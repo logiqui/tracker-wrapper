@@ -12,6 +12,15 @@ export type ValidModes =
   | 'Spike Rush'
   | 'Unrated'
 
+export interface RankDTO {
+  display: string
+  icon: string
+}
+
+export interface PeakDTO extends RankDTO {
+  actName: string
+}
+
 export interface PlaylistDTO {
   name: string
   timePlayed: ValueDTO
@@ -32,6 +41,15 @@ export interface PlaylistDTO {
   defuses: ValueDTO
   firstBloods: ValueDTO
   aces: ValueDTO
-  currentRank: string
-  peakRank: string
+  mostKills: ValueDTO
+  killsPerMatch: ValueDTO
+  deathsPerMatch: ValueDTO
+  assistsPerMatch: ValueDTO
+  damagePerRound: ValueDTO
+  scorePerRound: ValueDTO
+  econRatingPerMatch: ValueDTO
+  deathsFirst: ValueDTO
+  tierName: string
+  currentRank: RankDTO
+  peakRank: PeakDTO
 }

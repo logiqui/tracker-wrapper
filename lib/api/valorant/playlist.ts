@@ -1,4 +1,3 @@
-import { time } from 'console'
 import { BaseApi } from '../base'
 import { PlaylistDTO, ValidModes } from '../@types/playlist'
 
@@ -93,16 +92,72 @@ export class Playlist extends BaseApi {
             display: segment['stats']['aces']['displayValue'],
             value: segment['stats']['aces']['value']
           },
-          currentRank: `${
+          mostKills: {
+            display: segment['stats']['mostKillsInMatch']['displayValue'],
+            value: segment['stats']['mostKillsInMatch']['value']
+          },
+          killsPerMatch: {
+            display: segment['stats']['killsPerMatch']['displayValue'],
+            value: segment['stats']['killsPerMatch']['value']
+          },
+          deathsPerMatch: {
+            display: segment['stats']['deathsPerMatch']['displayValue'],
+            value: segment['stats']['deathsPerMatch']['value']
+          },
+          assistsPerMatch: {
+            display: segment['stats']['assistsPerMatch']['displayValue'],
+            value: segment['stats']['assistsPerMatch']['value']
+          },
+          damagePerRound: {
+            display: segment['stats']['damagePerRound']['displayValue'],
+            value: segment['stats']['damagePerRound']['value']
+          },
+          scorePerRound: {
+            display: segment['stats']['scorePerRound']['displayValue'],
+            value: segment['stats']['scorePerRound']['value']
+          },
+          econRatingPerMatch: {
+            display: segment['stats']['econRatingPerMatch']['displayValue'],
+            value: segment['stats']['econRatingPerMatch']['value']
+          },
+          deathsFirst: {
+            display: segment['stats']['deathsFirst']['displayValue'],
+            value: segment['stats']['deathsFirst']['value']
+          },
+          tierName: `${
             segment.attributes!.key === 'competitive'
-              ? `${segment['stats']['rank']['metadata']['tierName']} - ${segment['stats']['rank']['value']}RR`
+              ? segment['stats']['rank']['metadata']['tierName']
               : 'Unrated'
           }`,
-          peakRank: `${
-            segment.attributes!.key === 'competitive'
-              ? `${segment['stats']['rank']['metadata']['tierName']} - ${segment['stats']['rank']['value']}RR`
-              : 'Unrated'
-          }`
+          currentRank: {
+            display: `${
+              segment.attributes!.key === 'competitive'
+                ? `${segment['stats']['rank']['metadata']['tierName']} - ${segment['stats']['rank']['value']}RR`
+                : 'Unrated'
+            }`,
+            icon: `${
+              segment.attributes!.key === 'competitive'
+                ? segment['stats']['rank']['metadata']['iconUrl']
+                : 'https://cdn.discordapp.com/attachments/834195818080108564/835593595851112518/unranked.png'
+            }`
+          },
+          peakRank: {
+            display: `${
+              segment.attributes!.key === 'competitive'
+                ? `${segment['stats']['peakRank']['metadata']['tierName']} - ${segment['stats']['peakRank']['value']}RR`
+                : 'Unrated'
+            }`,
+            icon: `${
+              segment.attributes!.key === 'competitive'
+                ? segment['stats']['peakRank']['metadata']['iconUrl']
+                : 'https://cdn.discordapp.com/attachments/834195818080108564/835593595851112518/unranked.png'
+            }`,
+            actName: `${
+              segment.attributes!.key === 'competitive'
+                ? segment['stats']['peakRank']['metadata']['actName']
+                : 'Unrated'
+            }`
+          }
         })
       }
     })
@@ -110,7 +165,10 @@ export class Playlist extends BaseApi {
     return playlists
   }
 
-  async getPlaylist(username: string, gamemode: ValidModes): Promise<object> {
+  async getPlaylist(
+    username: string,
+    gamemode: ValidModes
+  ): Promise<PlaylistDTO> {
     const data = await this.getPlaylists(username)
 
     const playlistData = data.find((x: any) => x.name === gamemode)
