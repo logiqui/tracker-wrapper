@@ -1,2 +1,3 @@
-# typescript-template
-typescript template project
+# Tracker.gg Wrapper for VALORANT
+
+Tracker.gg Wrapper for VALORANT

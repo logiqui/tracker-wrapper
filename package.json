@@ -1,16 +1,16 @@
 {
-  "name": "trn-wrapper",
+  "name": "trn.gg",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/index.js",
     "dev": "ts-node-dev index.ts",
     "format": "prettier --write ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["valorant", "wrapper", "typescript", "api", "stats"],
+  "author": "logic#7777",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.33",
