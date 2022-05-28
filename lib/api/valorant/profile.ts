@@ -6,7 +6,7 @@ export class Profile extends BaseApi {
     const [user, tag] = username.split('#')
 
     const response = await this.request(
-      `https://api.tracker.gg/api/v2/valorant/standard/profile/riot/${user}%23${tag}s`
+      `https://api.tracker.gg/api/v2/valorant/standard/profile/riot/${user}%23${tag}`
     )
 
     return response['data']
