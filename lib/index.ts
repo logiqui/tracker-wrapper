@@ -10,13 +10,3 @@ export * from './api/@types/maps'
 export * from './api/@types/playlist'
 export * from './api/@types/profile'
 export * from './api/@types/weapons'
-
-const main = async () => {
-  const api = new TrackerAPI()
-
-  const matchInfo = await api.matches.getLastMatch('logic ma fase#1244')
-
-  console.log(matchInfo)
-}
-
-main()

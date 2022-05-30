@@ -125,18 +125,22 @@ export class Playlist extends BaseApi {
             value: segment['stats']['deathsFirst']['value']
           },
           tierName: `${
-            segment.attributes!.key === 'competitive'
+            segment.attributes!.key == 'competitive'
               ? segment['stats']['rank']['metadata']['tierName']
               : 'Unrated'
           }`,
           currentRank: {
             display: `${
-              segment.attributes!.key === 'competitive'
-                ? `${segment['stats']['rank']['metadata']['tierName']} - ${segment['stats']['rank']['value']}RR`
+              segment.attributes!.key == 'competitive'
+                ? `${segment['stats']['rank']['metadata']['tierName']}${
+                    segment['stats']['rank']['value'] !== null
+                      ? ' - ' + segment['stats']['rank']['value'] + 'RR'
+                      : ''
+                  }`
                 : 'Unrated'
             }`,
             icon: `${
-              segment.attributes!.key === 'competitive'
+              segment.attributes!.key == 'competitive'
                 ? segment['stats']['rank']['metadata']['iconUrl']
                 : 'https://cdn.discordapp.com/attachments/834195818080108564/835593595851112518/unranked.png'
             }`
@@ -144,7 +148,11 @@ export class Playlist extends BaseApi {
           peakRank: {
             display: `${
               segment.attributes!.key === 'competitive'
-                ? `${segment['stats']['peakRank']['metadata']['tierName']} - ${segment['stats']['peakRank']['value']}RR`
+                ? `${segment['stats']['peakRank']['metadata']['tierName']}${
+                    segment['stats']['peakRank']['value'] !== null
+                      ? ' - ' + segment['stats']['peakRank']['value'] + 'RR'
+                      : ''
+                  }`
                 : 'Unrated'
             }`,
             icon: `${
