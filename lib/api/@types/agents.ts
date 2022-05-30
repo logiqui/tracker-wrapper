@@ -19,6 +19,7 @@ export type ValidAgents =
   | 'KAY/O'
   | 'Chamber'
   | 'Neon'
+  | 'Fade'
 
 export interface AgentDTO {
   name: string
